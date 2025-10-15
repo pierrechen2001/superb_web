@@ -42,10 +42,10 @@ export default function AboutSection() {
               關於我們
             </h2>
             
-            <h3 className="text-3xl md:text-4xl font-serif font-bold text-light-gray mb-8 leading-tight">
+            <h3 className="text-xl md:text-2xl font-serif font-semibold text-light-gray mb-6 leading-snug">
               我們相信
               <br />
-              <span className="text-tech-blue">技術能放大創意</span>
+              <span className="text-tech-blue font-bold">技術能放大創意</span>
             </h3>
 
             <p className="text-lg text-muted-gray leading-loose mb-8">
@@ -171,11 +171,6 @@ export default function AboutSection() {
                     {/* Icon Circle */}
                     <div className="mb-8 p-8 bg-gradient-to-br from-tech-blue/20 to-energy-yellow/20 rounded-full border border-white/10">
                       <Icon className="w-12 h-12 text-energy-yellow" strokeWidth={1.5} />
-                    </div>
-
-                    {/* Step Number */}
-                    <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-2 w-10 h-10 bg-tech-blue rounded-full flex items-center justify-center text-base font-bold">
-                      {index + 1}
                     </div>
 
                     {/* Title */}

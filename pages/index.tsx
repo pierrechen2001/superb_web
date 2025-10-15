@@ -1,5 +1,6 @@
 import ParticleBackground from '@/components/ParticleBackground'
 import ScrollProgress from '@/components/ScrollProgress'
+import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
 import ServicesSection from '@/components/ServicesSection'
 import AboutSection from '@/components/AboutSection'
@@ -15,6 +16,9 @@ export default function Home() {
 
       {/* Scroll Progress Bar */}
       <ScrollProgress />
+
+      {/* Navigation Bar */}
+      <Navbar />
 
       {/* Main Content */}
       <div className="relative z-10">

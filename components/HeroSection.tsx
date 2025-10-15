@@ -17,7 +17,7 @@ const smoothScrollTo = (elementId: string) => {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-[10%] overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-[10%] overflow-hidden">
       {/* === Modern Tech Section | Deep navy bg + glass cards + yellow glow hover === */}
       
       {/* 背景漸層 - 添加呼吸動畫 */}

@@ -17,13 +17,14 @@ export default function ScrollProgress() {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 w-full h-[3px] z-50 bg-transparent">
+    <div className="fixed top-0 left-0 w-full h-[6px] z-50 bg-transparent">
       <div
         className="h-full transition-all duration-100 ease-out"
         style={{
           width: `${scrollProgress}%`,
           background: 'linear-gradient(to right, #F3B237, #2768A8)',
-          filter: 'drop-shadow(0 0 8px #F3B237)',
+          filter: 'drop-shadow(0 0 10px #F3B237)',
+          boxShadow: '0 0 15px rgba(243, 178, 55, 0.5)',
         }}
       />
     </div>

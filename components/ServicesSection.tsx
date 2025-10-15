@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Code2, Brain, Smartphone, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useState } from 'react'
-import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
 const services = [
   {
@@ -36,7 +35,7 @@ const services = [
   },
 ]
 
-// 圖片輪播組件
+// 圖片輪播組件 - 重新設計（加入自動播放）
 function ImageCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   
@@ -55,45 +54,55 @@ function ImageCarousel() {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
+  // 自動播放功能 - 每 4 秒自動切換到下一張
+  useEffect(() => {
+    const autoPlayInterval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 4000) // 4 秒切換一次
+
+    // 清理函數：組件卸載時清除定時器
+    return () => clearInterval(autoPlayInterval)
+  }, [images.length]) // 只在 images.length 改變時重新設置（實際上不會改變）
+
   return (
-    <div className="relative aspect-square rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 group">
-      {/* 圖片顯示 */}
-      <div className="relative w-full h-full">
+    <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 group">
+      {/* 圖片輪播容器 - 使用 transform 滑動 */}
+      <div 
+        className="flex h-full transition-transform duration-500 ease-out"
+        style={{ 
+          transform: `translateX(-${currentIndex * 100}%)`,
+        }}
+      >
         {images.map((img, index) => (
-          <motion.div
+          <div
             key={index}
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: currentIndex === index ? 1 : 0,
-              scale: currentIndex === index ? 1 : 1.1,
-            }}
-            transition={{ duration: 0.5 }}
+            className="relative flex-shrink-0 w-full h-full"
           >
-            <Image
+            <img
               src={img}
               alt={`服務展示 ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="w-full h-full object-cover"
+              loading="lazy"
             />
-          </motion.div>
+          </div>
         ))}
       </div>
 
       {/* 左右切換按鈕 */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-all opacity-0 group-hover:opacity-100 z-10"
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 z-10"
+        aria-label="上一張"
       >
-        <ChevronLeft className="w-6 h-6 text-light-gray" />
+        <ChevronLeft className="w-6 h-6 text-white" />
       </button>
       
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-all opacity-0 group-hover:opacity-100 z-10"
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 z-10"
+        aria-label="下一張"
       >
-        <ChevronRight className="w-6 h-6 text-light-gray" />
+        <ChevronRight className="w-6 h-6 text-white" />
       </button>
 
       {/* 指示點 */}
@@ -102,10 +111,11 @@ function ImageCarousel() {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
+            aria-label={`切換到第 ${index + 1} 張圖片`}
+            className={`h-2 rounded-full transition-all duration-300 ${
               currentIndex === index
                 ? 'bg-energy-yellow w-8'
-                : 'bg-white/30 hover:bg-white/50'
+                : 'bg-white/50 hover:bg-white/70 w-2'
             }`}
           />
         ))}
@@ -136,16 +146,17 @@ export default function ServicesSection() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
-        {/* 左側：服務卡片 (2x2) */}
-        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* 使用 flex 佈局來更好控制比例 */}
+      <div className="flex flex-col lg:flex-row gap-8 mb-20">
+        {/* 左側：服務卡片 (2x2) - 調整為較小尺寸 */}
+        <div className="flex-1 lg:max-w-[55%] grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon
             
             return (
               <motion.div
                 key={index}
-                className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-10 transition-all duration-300 hover:scale-[1.03]"
+                className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 transition-all duration-300 hover:scale-[1.03]"
                 style={{
                   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                 }}
@@ -158,16 +169,16 @@ export default function ServicesSection() {
                 }}
               >
                 {/* Icon - 只有線條漸層變色 */}
-                <div className="mb-8 inline-block p-4 bg-tech-blue/20 rounded-xl transition-colors relative overflow-hidden">
+                <div className="mb-4 inline-block p-2.5 bg-tech-blue/20 rounded-xl transition-colors relative overflow-hidden">
                   {/* 普通狀態的 icon */}
                   <Icon 
-                    className="w-10 h-10 text-tech-blue group-hover:opacity-0 transition-opacity duration-300 relative z-10" 
+                    className="w-7 h-7 text-tech-blue group-hover:opacity-0 transition-opacity duration-300 relative z-10" 
                     strokeWidth={1.5}
                   />
                   {/* Hover 狀態的漸層 icon */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <Icon 
-                      className="w-10 h-10 relative z-10" 
+                      className="w-7 h-7 relative z-10" 
                       strokeWidth={1.5}
                       style={{
                         stroke: `url(#gradient-${index})`,
@@ -185,12 +196,12 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-semibold text-light-gray mb-5 leading-tight">
+                <h3 className="text-lg font-semibold text-light-gray mb-2 leading-tight">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-muted-gray leading-loose text-base">
+                <p className="text-muted-gray leading-relaxed text-sm">
                   {service.description}
                 </p>
 
@@ -206,9 +217,9 @@ export default function ServicesSection() {
           })}
         </div>
 
-        {/* 右側：圖片輪播 */}
+        {/* 右側：圖片輪播 - 放大並與左側高度一致 */}
         <motion.div
-          className="lg:col-span-1 flex items-center"
+          className="flex-1 lg:min-w-[40%]"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
