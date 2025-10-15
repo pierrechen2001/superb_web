@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     // 使用 Resend 發送郵件
     const { data, error } = await resend.emails.send({
-      from: 'Superb Tech Studio <onboarding@resend.dev>', // Resend 的驗證發件地址
+      from: 'Superb Tech Studio <noreply@superb-tutor.com>', // Resend 的驗證發件地址
       to: process.env.CONTACT_EMAIL || 'superb.taipei@gmail.com', // 你的接收信箱
       subject: `🆕 新的聯絡表單：來自 ${name}`,
       html: `
