@@ -71,9 +71,13 @@ export default function Navbar() {
           <a 
             href="#hero" 
             onClick={(e) => handleClick(e, '#hero')}
-            className="text-2xl font-serif font-bold text-energy-yellow hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            SUPERB
+            <img
+              src="/images/brand_yellow.png"
+              alt="Superb Tech Studio"
+              className="h-12 w-auto md:h-13 mt-2"
+            />
           </a>
 
           {/* Navigation Links */}

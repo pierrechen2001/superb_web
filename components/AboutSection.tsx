@@ -23,7 +23,7 @@ const processSteps = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-32 px-6 md:px-12 lg:px-[10%]">
+    <section id="about" className="relative py-10 px-6 md:px-12 lg:px-[10%]">
       <div className="max-w-7xl mx-auto">
         {/* Top Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-28">
@@ -48,9 +48,9 @@ export default function AboutSection() {
               <span className="text-tech-blue font-bold">技術能放大創意</span>
             </h3>
 
-            <p className="text-lg text-muted-gray leading-loose mb-8">
+            <p className="text-base text-muted-gray leading-loose mb-8">
               精湛資訊工作室是一個專注於現代網站開發與 AI 技術整合的團隊。
-              我們不只是寫程式，更是用代碼實現夢想的創造者。
+              我們不只是寫程式，更是用資訊技術實現夢想的創造者。
             </p>
 
             <p className="text-base text-muted-gray leading-loose">
@@ -68,15 +68,11 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="relative bg-white/5 backdrop-blur-md border-2 border-dashed border-white/20 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center group hover:border-energy-yellow/50 transition-all">
-              <div className="text-center">
-                <ImageIcon className="w-16 h-16 text-muted-gray mx-auto mb-4 group-hover:text-energy-yellow transition-colors" />
-                <p className="text-muted-gray group-hover:text-light-gray transition-colors">
-                  工作場景圖片
-                  <br />
-                  <span className="text-sm">(建議尺寸: 800x600px)</span>
-                </p>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-tech-blue/5 to-energy-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <img 
+                src="/images/us.png" 
+                alt="工作場景"
+                className="w-full h-full object-cover rounded-2xl"
+              />
             </div>
           </motion.div>
         </div>
@@ -110,31 +106,6 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        {/* Team Image Section */}
-        <motion.div
-          className="mb-28"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-3xl font-serif font-bold text-center text-light-gray mb-12 leading-tight">
-            我們的團隊
-          </h3>
-
-          <div className="relative bg-white/5 backdrop-blur-md border-2 border-dashed border-white/20 rounded-2xl overflow-hidden aspect-[21/9] flex items-center justify-center group hover:border-energy-yellow/50 transition-all">
-            <div className="text-center">
-              <ImageIcon className="w-20 h-20 text-muted-gray mx-auto mb-6 group-hover:text-energy-yellow transition-colors" />
-              <p className="text-lg text-muted-gray group-hover:text-light-gray transition-colors">
-                團隊合照或工作室照片
-                <br />
-                <span className="text-sm mt-2 block">(建議尺寸: 1400x600px，橫幅格式)</span>
-              </p>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-tech-blue/5 to-energy-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-        </motion.div>
-
         {/* Process Steps */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -146,7 +117,7 @@ export default function AboutSection() {
             我們的工作流程
           </h3>
           <p className="text-center text-muted-gray mb-16 text-lg leading-relaxed">
-            從需求探索到完美交付，我們注重每一個細節
+            從需求到交付，我們注重每一個細節
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -156,7 +127,7 @@ export default function AboutSection() {
               return (
                 <motion.div
                   key={index}
-                  className="relative text-center"
+                  className="relative"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -167,21 +138,23 @@ export default function AboutSection() {
                     <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-[2px] bg-gradient-to-r from-tech-blue to-energy-yellow opacity-30" />
                   )}
 
-                  <div className="relative z-10 flex flex-col items-center">
+                  <div className="relative z-10 flex items-center justify-center md:flex-col md:items-center md:text-center gap-5 md:gap-6 px-2">
                     {/* Icon Circle */}
-                    <div className="mb-8 p-8 bg-gradient-to-br from-tech-blue/20 to-energy-yellow/20 rounded-full border border-white/10">
-                      <Icon className="w-12 h-12 text-energy-yellow" strokeWidth={1.5} />
+                    <div className="shrink-0 p-5 md:p-9 bg-gradient-to-br from-tech-blue/20 to-energy-yellow/20 rounded-full border border-white/10">
+                      <Icon className="w-10 h-10 md:w-12 md:h-12 text-energy-yellow" strokeWidth={1.5} />
                     </div>
 
-                    {/* Title */}
-                    <h4 className="text-2xl font-semibold text-light-gray mb-5 leading-tight">
-                      {step.title}
-                    </h4>
+                    <div className="flex-1 md:mt-2">
+                      {/* Title */}
+                      <h4 className="text-xl md:text-2xl font-semibold text-light-gray mb-2 md:mb-5 leading-tight">
+                        {step.title}
+                      </h4>
 
-                    {/* Description */}
-                    <p className="text-muted-gray text-base leading-relaxed">
-                      {step.description}
-                    </p>
+                      {/* Description */}
+                      <p className="text-muted-gray text-sm md:text-base leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               )

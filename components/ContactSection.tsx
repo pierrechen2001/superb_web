@@ -10,13 +10,37 @@ export default function ContactSection() {
     email: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // 這裡可以加入實際的表單提交邏輯
-    console.log('Form submitted:', formData)
-    alert('感謝您的聯繫！我們會盡快回覆您。')
-    setFormData({ name: '', email: '', message: '' })
+    
+    if (isSubmitting) return // 防止重複提交
+    
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || '送出失敗')
+      }
+
+      alert('感謝您的聯繫！我們會盡快回覆您。')
+      setFormData({ name: '', email: '', message: '' })
+    } catch (error: any) {
+      alert(`送出失敗：${error.message || '請稍後再試'}`)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,7 +51,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="relative py-32 px-6 md:px-12 lg:px-[10%]">
+    <section id="contact" className="relative py-16 px-6 md:py-28 md:px-12 lg:px-[10%]">
       {/* Background Particles Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-tech-blue/10 rounded-full blur-3xl animate-pulse" />
@@ -124,15 +148,18 @@ export default function ContactSection() {
             {/* Submit Button */}
             <motion.button
               type="submit"
-              className="w-full bg-tech-blue hover:bg-tech-blue/90 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2"
-              whileHover={{
+              disabled={isSubmitting}
+              className={`w-full bg-tech-blue hover:bg-tech-blue/90 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 ${
+                isSubmitting ? 'opacity-60 cursor-not-allowed' : ''
+              }`}
+              whileHover={!isSubmitting ? {
                 scale: 1.02,
                 boxShadow: '0 0 20px rgba(39,104,168,0.6)',
-              }}
-              whileTap={{ scale: 0.98 }}
+              } : {}}
+              whileTap={!isSubmitting ? { scale: 0.98 } : {}}
             >
-              <Send className="w-5 h-5" />
-              送出訊息
+              <Send className={`w-5 h-5 ${isSubmitting ? 'animate-pulse' : ''}`} />
+              {isSubmitting ? '送出中...' : '送出訊息'}
             </motion.button>
           </form>
         </motion.div>
@@ -147,10 +174,10 @@ export default function ContactSection() {
         >
           <p className="text-muted-gray mb-2">或直接寄信給我們</p>
           <a 
-            href="mailto:hello@superbtech.studio" 
+            href="mailto:superb.taipei@gmail.com" 
             className="text-tech-blue hover:text-energy-yellow transition-colors text-lg font-medium"
           >
-            hello@superbtech.studio
+            superb.taipei@gmail.com
           </a>
         </motion.div>
       </div>

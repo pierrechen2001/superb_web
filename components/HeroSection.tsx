@@ -40,18 +40,39 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Logo 圖片 */}
-      <motion.div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 1.5, ease: 'easeOut' }}
-      >
-        <img
-          src="/images/logo.png"
-          alt="Superb Tech Studio Logo"
-          className="w-96 h-96 object-contain"
-          style={{ filter: 'brightness(1.5)' }}
+      {/* 幾何模糊圖形 */}
+      <motion.div className="absolute inset-0 z-0 pointer-events-none">
+        {/* 旋轉的圓角方塊 - 黃/藍漸層 */}
+        <motion.div
+          className="absolute top-24 left-1/3 w-72 h-72 rounded-2xl border border-white/10 rotate-12"
+          style={{
+            background: 'linear-gradient(135deg, rgba(243,178,55,0.14), rgba(39,104,168,0.14))',
+            filter: 'blur(1px)'
+          }}
+          animate={{ y: [0, -18, 0], rotate: [12, 8, 12], opacity: [0.5, 0.7, 0.5] }}
+          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* 發光圓形 - 科技藍 */}
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-56 h-56 rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(39,104,168,0.28), transparent 65%)',
+            filter: 'blur(2px)'
+          }}
+          animate={{ x: [0, 12, 0], scale: [1, 1.06, 1], opacity: [0.4, 0.55, 0.4] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* 斜角光片 - 品牌黃 */}
+        <motion.div
+          className="absolute bottom-24 left-[20%] w-64 h-64 rounded-2xl -rotate-12"
+          style={{
+            background: 'linear-gradient(135deg, rgba(243,178,55,0.22), transparent)',
+            filter: 'blur(2px)'
+          }}
+          animate={{ y: [0, 14, 0], rotate: [-12, -16, -12], opacity: [0.25, 0.35, 0.25] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
       </motion.div>
 
@@ -107,7 +128,7 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          我們相信技術能放大創意，用代碼打造專屬於你的數位體驗
+          我們相信技術能放大創意，用資訊技術打造專屬於你的體驗
         </motion.p>
 
         {/* CTA 按鈕 - 交換順序 */}

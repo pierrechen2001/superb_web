@@ -126,7 +126,7 @@ function ImageCarousel() {
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="relative py-32 px-6 md:px-12 lg:px-[10%]">
+    <section id="services" className="relative py-10 px-6 md:px-12 lg:px-[10%]">
       {/* Section Title - 移除黃色橫線 */}
       <motion.div
         className="mb-20"
