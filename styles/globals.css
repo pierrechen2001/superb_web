@@ -4,8 +4,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@600;700;800;900&display=swap');
 
+/* 字體堆疊：行動裝置上某些中文字體（如粗明體）可能不可用，
+   透過提供常見繁中系統字體作為備援，提高一致性 */
+:root {
+  --font-sans-tc: 'Noto Sans TC', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'PMingLiU', 'PingFang SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif-tc: 'Noto Serif TC', 'Songti TC', 'Times New Roman', Georgia, serif;
+}
+
 body {
-  font-family: 'Noto Sans TC', system-ui, sans-serif;
+  font-family: var(--font-sans-tc);
   background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
   color: #E2E8F0;
   overflow-x: hidden;
