@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 const services = [
   {
     icon: Code2,
-    title: '網站開發',
+    title: '網站製作開發',
     description: '打造高效能、響應式的現代化網站，從前端到後端完整解決方案',
     gradientFrom: '#3B82F6',
     gradientTo: '#8B5CF6',

@@ -49,7 +49,7 @@ export default function AboutSection() {
             </h3>
 
             <p className="text-base text-muted-gray leading-loose mb-8">
-              精湛資訊工作室是一個專注於現代網站開發與 AI 技術整合的團隊。
+              精湛資訊工作室是一個專注於專業網頁製作開發與 AI 技術整合的團隊。
               我們不只是寫程式，更是用資訊技術實現夢想的創造者。
             </p>
 
