@@ -18,7 +18,7 @@ const websites = [
     title: '投資資料管理系統',
     description:
       '展現金融後台的數據可視化與系統化管理。整合使用者投資紀錄、基金績效與回測結果，以直觀的圖表與動態介面呈現。兼顧即時性、穩定性與易維護性。',
-    url: 'https://bnp-paribas-comp.vercel.app',
+    url: 'https://bnp-paribas-comp.pages.dev',
     image: '/images/website-2.jpg',
   },
   {
