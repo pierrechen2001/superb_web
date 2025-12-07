@@ -1,23 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+// 靜態導入構建時生成的內容
+import { sharedFilesContent, sharedFileConfig } from '../../../lib/sharedFilesContent'
 
 // 配置 Edge Runtime 以支援 Cloudflare Pages
 export const runtime = 'edge'
-
-// 動態導入以避免 Edge Runtime 限制
-// 使用異步導入來處理大型文件內容
-let sharedDataPromise: Promise<{ content: Record<string, string>, config: any }> | null = null
-
-async function getSharedData() {
-  if (!sharedDataPromise) {
-    sharedDataPromise = import('../../../lib/sharedFilesContent').then(
-      (module) => ({
-        content: module.sharedFilesContent || {},
-        config: module.sharedFileConfig || {}
-      })
-    ).catch(() => ({ content: {}, config: {} }))
-  }
-  return sharedDataPromise
-}
 
 interface FileConfig {
   password: string
@@ -25,42 +10,56 @@ interface FileConfig {
 }
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+  req: Request
 ) {
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' })
-  }
-
-  const { filename } = req.query
-
-  if (!filename || typeof filename !== 'string') {
-    return res.status(400).json({ error: 'Invalid filename' })
-  }
-
-  // 安全檢查：防止路徑遍歷攻擊
-  if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
-    return res.status(400).json({ error: 'Invalid filename' })
-  }
-
-  // 檢查密碼驗證（從 header 中獲取）
-  const authToken = req.headers['x-auth-token']
-  
-  // 驗證 token
-  if (authToken !== 'authenticated') {
-    return res.status(401).json({ error: 'Unauthorized - Password required' })
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' }
+    })
   }
 
   try {
-    // 異步獲取文件內容和配置
-    const { content: sharedFilesContent, config: sharedFileConfig } = await getSharedData()
+    // 從 URL 中提取 filename
+    const url = new URL(req.url)
+    const pathParts = url.pathname.split('/')
+    const filename = pathParts[pathParts.length - 1]
+
+    if (!filename || typeof filename !== 'string') {
+      return new Response(JSON.stringify({ error: 'Invalid filename' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    // 安全檢查：防止路徑遍歷攻擊
+    if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
+      return new Response(JSON.stringify({ error: 'Invalid filename' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    // 檢查密碼驗證（從 header 中獲取）
+    const authToken = req.headers.get('x-auth-token')
     
+    // 驗證 token
+    if (authToken !== 'authenticated') {
+      return new Response(JSON.stringify({ error: 'Unauthorized - Password required' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
     // 從預先加載的文件內容中獲取
     let fileContent = sharedFilesContent[filename]
     
     // 檢查文件是否存在
     if (!fileContent) {
-      return res.status(404).json({ error: 'File not found' })
+      return new Response(JSON.stringify({ error: 'File not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' }
+      })
     }
     
     // 自動添加 footer
@@ -87,12 +86,17 @@ export default async function handler(
       fileContent += footerHTML
     }
     
-    // 設置適當的 Content-Type
-    res.setHeader('Content-Type', 'text/html; charset=utf-8')
-    res.status(200).send(fileContent)
+    // 返回 HTML 內容
+    return new Response(fileContent, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' }
+    })
   } catch (error) {
     console.error('Error reading file:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    return new Response(JSON.stringify({ error: 'Internal server error', details: String(error) }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    })
   }
 }
 
