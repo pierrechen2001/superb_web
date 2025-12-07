@@ -1,7 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import fs from 'fs'
-import path from 'path'
 import sharedFileConfig from '../../../shared_file_config.json'
+
+// 導入構建時生成的文件內容
+// 如果文件不存在，TypeScript 會報錯，但我們可以在構建時確保文件存在
+import { sharedFilesContent } from '../../../lib/sharedFilesContent'
+
+// 配置 Edge Runtime 以支援 Cloudflare Pages
+export const runtime = 'edge'
 
 interface FileConfig {
   password: string
@@ -36,16 +41,13 @@ export default async function handler(
   }
 
   try {
-    // 從 shared_files 資料夾讀取（不在 public 中，無法直接訪問）
-    const filePath = path.join(process.cwd(), 'shared_files', filename)
+    // 從預先加載的文件內容中獲取
+    let fileContent = sharedFilesContent[filename]
     
     // 檢查文件是否存在
-    if (!fs.existsSync(filePath)) {
+    if (!fileContent) {
       return res.status(404).json({ error: 'File not found' })
     }
-
-    // 讀取文件內容
-    let fileContent = fs.readFileSync(filePath, 'utf-8')
     
     // 自動添加 footer
     const footerText = (sharedFileConfig as any).footerText || '此文件由精湛資訊工作室 Superb Tech Studio 分享'
