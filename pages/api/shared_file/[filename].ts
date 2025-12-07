@@ -1,12 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import sharedFileConfig from '../../../shared_file_config.json'
-
-// 導入構建時生成的文件內容
-// 如果文件不存在，TypeScript 會報錯，但我們可以在構建時確保文件存在
-import { sharedFilesContent } from '../../../lib/sharedFilesContent'
 
 // 配置 Edge Runtime 以支援 Cloudflare Pages
 export const runtime = 'edge'
+
+// 動態導入以避免 Edge Runtime 限制
+// 使用異步導入來處理大型文件內容
+let sharedDataPromise: Promise<{ content: Record<string, string>, config: any }> | null = null
+
+async function getSharedData() {
+  if (!sharedDataPromise) {
+    sharedDataPromise = import('../../../lib/sharedFilesContent').then(
+      (module) => ({
+        content: module.sharedFilesContent || {},
+        config: module.sharedFileConfig || {}
+      })
+    ).catch(() => ({ content: {}, config: {} }))
+  }
+  return sharedDataPromise
+}
 
 interface FileConfig {
   password: string
@@ -41,6 +52,9 @@ export default async function handler(
   }
 
   try {
+    // 異步獲取文件內容和配置
+    const { content: sharedFilesContent, config: sharedFileConfig } = await getSharedData()
+    
     // 從預先加載的文件內容中獲取
     let fileContent = sharedFilesContent[filename]
     
@@ -50,7 +64,7 @@ export default async function handler(
     }
     
     // 自動添加 footer
-    const footerText = (sharedFileConfig as any).footerText || '此文件由精湛資訊工作室 Superb Tech Studio 分享'
+    const footerText = sharedFileConfig?.footerText || '此文件由精湛資訊工作室 Superb Tech Studio 分享'
     const footerHTML = `
     <footer style="margin-top: 60px; padding: 40px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: #94A3B8; font-size: 0.9rem;">
         <p style="margin: 0; line-height: 1.8;">
