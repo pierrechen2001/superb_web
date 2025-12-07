@@ -1,0 +1,20 @@
+{
+  "files": {
+    "example.html": {
+      "password": "superb",
+      "name": "範例分享文件"
+    },
+    "zx_contract.html": {
+      "password": "zxpest",
+      "name": "中星形象官網合約"
+    },
+    "land_devprice.html": {
+      "password": "daishu",
+      "name": "代書軟體開發報價"
+    }
+  },
+  "defaultPassword": "superb",
+  "footerText": "此文件由精湛資訊工作室 Superb Tech Studio 分享",
+  "adminPassword": "superb2001"
+}
+

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>網站製作合作共識書</title>
+  <style>
+    :root{
+      --bg:#f7f7f8;
+      --card:#ffffff;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --brand:#2768a8;
+      --accent:#f3b237;
+      --border:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+    .wrap{max-width:900px;margin:48px auto;padding:0 20px}
+    .doc{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+    header{padding:28px 28px 16px;border-bottom:1px solid var(--border)}
+    header h1{margin:0 0 6px;font-size:28px;letter-spacing:.02em}
+    header p{margin:0;color:var(--muted)}
+    section{padding:24px 28px;border-top:1px solid var(--border)}
+    h2{margin:0 0 10px;font-size:20px}
+    h3{margin:18px 0 8px;font-size:17px}
+    ul{margin:8px 0 0 20px}
+    .kv{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .kv .field{display:flex;gap:8px}
+    .kv .key{min-width:120px;color:var(--muted)}
+    .tag{display:inline-block;padding:2px 10px;border-radius:999px;background:rgba(39,104,168,.08);color:var(--brand);font-size:12px;margin-left:8px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{border:1px solid var(--border);padding:10px 12px;text-align:left}
+    th{background:#fafafa}
+    .note{color:var(--muted);font-size:14px}
+    .sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
+    .sig .box{border:1px dashed var(--border);border-radius:12px;padding:16px 14px;height:140px}
+    .pill{background:var(--accent);color:#111827;display:inline-block;padding:4px 10px;border-radius:999px;font-weight:600;margin-left:8px}
+    .callout{border-left:4px solid var(--brand);background:#f0f6fc;padding:10px 12px;border-radius:6px;color:#0f172a}
+    .list-tight li{margin:4px 0}
+    footer{padding:18px 28px;color:var(--muted);font-size:14px}
+    @media print{
+      body{background:#fff}
+      .wrap{margin:0;padding:0}
+      .doc{box-shadow:none;border:0;border-radius:0}
+      header,section,footer{padding:12pt 0;border-color:#ddd}
+      a[href]:after{content:" (" attr(href) ")";font-size:10pt;color:#666}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="doc">
+      <header>
+        <h1>網站製作合作共識書 <span class="tag">友好版</span></h1>
+        <p>本文件用於紀錄雙方對於網站製作專案之合作內容、交付範圍與付款方式，便於後續溝通。非正式合約，但具備合作共識效力。</p>
+      </header>
+
+      <section>
+        <h2>一、專案基本資訊</h2>
+        <div class="kv">
+          <div class="field"><div class="key">委託方（客戶）</div><div>鄭裕霖</div></div>
+          <div class="field"><div class="key">製作方（開發者）</div><div>陳冠宇</div></div>
+          <div class="field"><div class="key">專案名稱</div><div>中星形象官網製作</div></div>
+          <div class="field"><div class="key">網站類型</div><div>形象網站（含留言板動態收信）</div></div>
+          <div class="field"><div class="key">預估上線</div><div>約 3–5 週（依素材提供時程調整）</div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>二、製作範圍 <span class="pill">本案不含動態文章管理</span></h2>
+        <h3>（A）頁面</h3>
+        <ul class="list-tight">
+          <li>首頁（業務項目介紹，含公司理念內容）</li>
+          <li>害蟲介紹（Blog 形式之靜態文章頁，內容由製作方代上稿或以固定檔案匯入，不含後台動態管理）</li>
+          <li>施作實績（靜態圖片＋文字說明）</li>
+          <li>常見問題（靜態文章頁）</li>
+          <li>聯絡我們（留言板表單，可寄信至指定信箱）</li>
+        </ul>
+        <h3>（B）功能</h3>
+        <ul class="list-tight">
+          <li>留言板表單送出 ➜ 自動寄信到客戶指定信箱（可設定收件信箱）</li>
+          <li>Line / FB / IG 懸浮按鈕（全站顯示）</li>
+          <li>響應式網頁（手機／平板／桌機）</li>
+          <li>上線部署（提供測試網址，並協助綁定正式網域）</li>
+        </ul>
+        <div class="callout">
+          備註：本案<strong>不包含</strong>會員系統、後台 CMS、動態文章管理、金流與第三方進階整合。如需擴充，另行估價。
+        </div>
+      </section>
+
+      <section>
+        <h2>三、客戶需提供之素材</h2>
+        <ul class="list-tight">
+          <li>各頁面文案與圖片（建議以共享雲端資料夾提供，圖片長邊 ≥ 1920px）</li>
+          <li>公司 Logo 與品牌規範（色碼、字體授權如有）</li>
+          <li>公司聯絡資訊與收件信箱（留言板寄送用；可提供多個收件者）</li>
+          <li>害蟲介紹內容（標題、內文、對應圖片）與施作實績資料（案例標題、說明、照片）</li>
+        </ul>
+        <p class="note">若素材暫無法歸類，可先集中到「其他資源」資料夾，由製作方協助整理。</p>
+      </section>
+
+      <section>
+        <h2>四、費用與付款方式（總額 NT$30,000）</h2>
+        <table>
+          <thead>
+            <tr><th>階段</th><th>說明</th><th>金額</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>① 開案啟動款</td>
+              <td>協議確認後付款，啟動設計與開發</td>
+              <td><strong>$10,000</strong></td>
+            </tr>
+            <tr>
+              <td>② 交付與上線款</td>
+              <td>全站完成、雙方驗收無誤並上線後付清</td>
+              <td><strong>$20,000</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="list-tight note">
+          <li>本案採一次性收費，不含稅金／發票。</li>
+          <li>若客戶於交付後 7 日內未提出書面問題，視為通過驗收。</li>
+          <li>新增頁面／重大改版或超出本範圍之需求，將另行報價。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>五、時程與修改規範</h2>
+        <ul class="list-tight">
+          <li>時程將依素材提供進度調整；素材延遲提供將順延交付日期。</li>
+          <li>上線後如需內容維護或功能擴充，可另議維運方案或以次計費。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>六、其他約定</h2>
+        <ul class="list-tight">
+          <li>客戶保證所提供之圖文無侵權；若有第三方爭議，由客戶自行負責。</li>
+          <li>除非另有書面約定，製作方得於作品集/案例頁展示本專案截圖與連結。</li>
+          <li>如需變更本共識內容，應經雙方同意並以電子文件確認。</li>
+        </ul>
+      </section>
+
+      <footer>
+        版本：2025-11-04｜此文件為合作共識用途，非正式合約；若需正式合約或發票內容，請另行提出。
+      </footer>
+    </article>
+  </div>
+</body>
+</html>

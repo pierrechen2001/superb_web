@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>範例共享文件</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'PMingLiU', system-ui, sans-serif;
+            background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+            color: #E2E8F0;
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: #F3B237;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(243, 178, 55, 0.3);
+        }
+        
+        h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
+            font-weight: 600;
+            color: #E2E8F0;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #CBD5E1;
+            margin: 20px 0;
+            line-height: 1.9;
+        }
+        
+        .highlight {
+            background: rgba(243, 178, 55, 0.1);
+            border-left: 4px solid #F3B237;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight strong {
+            color: #F3B237;
+        }
+        
+        .highlight code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #F3B237;
+            font-family: 'Courier New', monospace;
+        }
+        
+        ul, ol {
+            color: #CBD5E1;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        a {
+            color: #2768A8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #F3B237;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>歡迎查看共享文件</h1>
+        <p>這是一個範例 HTML 文件，展示如何通過密碼保護的方式分享文件給客戶。</p>
+        
+        <div class="highlight">
+            <strong>重要提示：</strong> 您可以將任何 HTML 文件放入 <code>shared_files/</code> 資料夾中，然後在配置文件中設置密碼即可。
+        </div>
+
+        <h2>使用說明</h2>
+        <ol>
+            <li>將 HTML 文件放入 <code>shared_files/</code> 資料夾（不在 public 資料夾中）</li>
+            <li>在 <code>shared_file_config.json</code> 中配置文件名和密碼</li>
+            <li>將連結 <code>/shared_file/文件名.html</code> 分享給客戶</li>
+            <li>客戶輸入密碼後即可查看文件</li>
+        </ol>
+
+        <h2>文件內容</h2>
+        <p>您可以在這裡放置任何 HTML 內容，包括：</p>
+        <ul>
+            <li>產品說明文件</li>
+            <li>報價單</li>
+            <li>設計稿展示</li>
+            <li>任何需要密碼保護的網頁內容</li>
+        </ul>
+        
+        <p style="margin-top: 40px; color: #94A3B8; font-size: 0.9rem;">
+            此文件採用深藍色科技風格設計，符合精湛資訊工作室的品牌視覺。
+        </p>
+    </div>
+</body>
+</html>
