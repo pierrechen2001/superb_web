@@ -60,11 +60,11 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
 
 | 元素 | 桌面版 | 手機版 | 字重 | 行高 |
 |------|--------|--------|------|------|
-| 基礎文字 | 14px | 14px | 400 | 1.7 |
-| H1 標題 | 24px | 20px | 600 | 1.3 |
-| H2 標題 | 18px | 16px | 600 | 1.3 |
-| H3 標題 | 16px | 15px | 600 | 1.3 |
-| 表格文字 | 13px | 12px | 400 | - |
+| 基礎文字 | 15px | 15px | 400 | 1.7 |
+| H1 標題 | 26px | 22px | 600 | 1.3 |
+| H2 標題 | 19px | 17px | 600 | 1.3 |
+| H3 標題 | 17px | 16px | 600 | 1.3 |
+| 表格文字 | 14px | 13px | 400 | - |
 | 標籤文字 | 12px | 12px | 600 | - |
 
 ---
@@ -114,7 +114,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
 ```
 
 樣式：
-- 字體大小：24px
+- 字體大小：26px
 - 字重：600
 - 底線：2px solid var(--border)
 - 下邊距：20px
@@ -125,7 +125,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
 ```
 
 樣式：
-- 字體大小：18px
+- 字體大小：19px
 - 字重：600
 - 上邊距：28px，下邊距：14px
 
@@ -211,7 +211,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI",
 }
 
 .feature-card h3 {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--brand);
   border-bottom: 2px solid var(--brand);
@@ -248,7 +248,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin: 20px 0;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 table > thead > tr > th {
@@ -365,11 +365,11 @@ table td:last-child {
     border-radius: 12px;
   }
   
-  h1 { font-size: 20px; }
-  h2 { font-size: 16px; }
-  h3 { font-size: 15px; }
+  h1 { font-size: 22px; }
+  h2 { font-size: 17px; }
+  h3 { font-size: 16px; }
   
-  table { font-size: 12px; }
+  table { font-size: 13px; }
   
   .feature-cards {
     grid-template-columns: 1fr;  /* 改為單欄 */
