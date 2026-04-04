@@ -11,6 +11,10 @@
     "land_devprice.html": {
       "password": "daishu",
       "name": "代書軟體開發報價"
+    },
+    "dogtor_partnership.html": {
+      "password": "dogtor_ntub12",
+      "name": "Dogtor 專案合夥協作協議書"
     }
   },
   "defaultPassword": "superb",
