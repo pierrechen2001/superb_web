@@ -15,6 +15,10 @@
     "dogtor_partnership.html": {
       "password": "dogtor_ntub12",
       "name": "Dogtor 專案合夥協作協議書"
+    },
+    "dogtor_long_term_partnership.html": {
+      "password": "dogtor_ntub12",
+      "name": "Dogtor 長期合夥協作協議書"
     }
   },
   "defaultPassword": "superb",

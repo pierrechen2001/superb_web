@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<title>長期合夥協作協議書 — Dogtor</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+:root {
+	--bg: linear-gradient(180deg, #1a405f 0%, #0c2847 100%);
+	--card: #ffffff;
+	--ink: #1f2937;
+	--muted: #6b7280;
+	--brand: #2768a8;
+	--accent: #f3b237;
+	--border: #e5e7eb;
+}
+* { box-sizing: border-box; }
+html, body {
+	margin: 0;
+	padding: 0;
+	background: var(--bg);
+	min-height: 100vh;
+	color: var(--ink);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+	font-size: 15px;
+	line-height: 1.65;
+	word-wrap: break-word;
+}
+.wrap {
+	max-width: 1000px;
+	margin: 80px auto;
+	padding: 0 20px;
+}
+.doc {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+	padding: 32px 40px;
+}
+.pill {
+	background: var(--accent);
+	color: #111827;
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 999px;
+	font-weight: 600;
+	margin-left: 8px;
+	font-size: 12px;
+}
+.tag {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 999px;
+	background: rgba(39, 104, 168, 0.08);
+	color: var(--brand);
+	font-size: 11px;
+	margin-left: 8px;
+}
+hr {
+	border: 0;
+	height: 1px;
+	border-bottom: 1px solid var(--border);
+	margin: 24px 0;
+	background: var(--border);
+}
+h1 {
+	padding-bottom: 0.5em;
+	line-height: 1.3;
+	border-bottom: 2px solid var(--border);
+	margin-bottom: 20px;
+	font-size: 26px;
+	font-weight: 600;
+	color: var(--ink);
+}
+h2 {
+	margin-top: 28px;
+	margin-bottom: 14px;
+	font-size: 19px;
+	font-weight: 600;
+	color: var(--ink);
+}
+h3 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 17px;
+	font-weight: 600;
+	color: var(--ink);
+}
+.doc p {
+	margin: 12px 0;
+	line-height: 1.75;
+	color: var(--ink);
+	font-size: 15px;
+}
+.doc p:first-of-type { margin-top: 0; }
+.doc ol, .doc ul {
+	margin: 12px 0;
+	padding-left: 24px;
+}
+.doc li { margin: 6px 0; line-height: 1.65; font-size: 15px; }
+strong { font-weight: 600; color: var(--ink); }
+.doc blockquote {
+	background: rgba(39, 104, 168, 0.05);
+	border-left: 4px solid var(--brand);
+	padding: 16px 20px;
+	margin: 20px 0;
+	border-radius: 6px;
+}
+.parties {
+	background: #fafafa;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 20px 24px;
+	margin: 20px 0;
+}
+.parties p { margin: 8px 0; }
+.parties .role { color: var(--brand); font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.feature-cards {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	margin: 20px 0;
+}
+.feature-card {
+	background: #ffffff;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 18px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.feature-card:hover {
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+	transform: translateY(-2px);
+}
+.feature-card h3 {
+	margin: 0 0 10px 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--brand);
+	border-bottom: 2px solid var(--brand);
+	padding-bottom: 8px;
+}
+.feature-card p, .feature-card ul {
+	margin: 0;
+	font-size: 14px;
+	color: var(--ink);
+}
+.feature-card ul {
+	padding-left: 18px;
+	margin-top: 8px;
+}
+.highlight-box {
+	background: #f0f6fc;
+	border-left: 4px solid var(--brand);
+	padding: 16px 20px;
+	border-radius: 8px;
+	margin: 20px 0;
+}
+.highlight-box p { margin: 6px 0; }
+.vesting-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	margin-top: 14px;
+}
+.vesting-item {
+	background: #fff;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 12px 14px;
+	font-size: 14px;
+}
+.vesting-item dt {
+	color: var(--muted);
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: 4px;
+}
+.vesting-item dd {
+	margin: 0;
+	font-weight: 600;
+	color: var(--brand);
+}
+/* 文末甲乙方與日期 */
+.doc-foot {
+	margin-top: 40px;
+	padding-top: 28px;
+	border-top: 1px solid var(--border);
+}
+.doc .doc-foot__title {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--muted);
+	margin: 0 0 16px 0;
+}
+.party-footer-grid {
+	display: grid;
+	grid-template-columns: 1.35fr 1fr;
+	gap: 16px;
+	align-items: stretch;
+}
+.party-card {
+	position: relative;
+	background: linear-gradient(180deg, #fafbfc 0%, #f4f6f8 100%);
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	padding: 20px 22px 22px;
+	overflow: hidden;
+}
+.party-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	border-radius: 14px 14px 0 0;
+}
+.party-card--a::before {
+	background: linear-gradient(90deg, var(--brand), #3d8ad4);
+}
+.party-card--b::before {
+	background: linear-gradient(90deg, var(--accent), #e8a82e);
+}
+.party-card__badge {
+	display: inline-flex;
+	align-items: center;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	color: var(--brand);
+	background: rgba(39, 104, 168, 0.1);
+	padding: 4px 10px;
+	border-radius: 6px;
+	margin-bottom: 10px;
+}
+.party-card--b .party-card__badge {
+	color: #92400e;
+	background: rgba(243, 178, 55, 0.18);
+}
+.doc-foot .party-card p {
+	margin: 0;
+}
+.party-card__name {
+	font-size: 16px;
+	font-weight: 700;
+	color: var(--ink);
+	line-height: 1.45;
+}
+.doc-foot .party-card__name {
+	margin: 0 0 14px 0;
+}
+.party-meta {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.party-meta__row {
+	display: grid;
+	grid-template-columns: 4.5rem 1fr;
+	gap: 10px 14px;
+	align-items: start;
+	font-size: 13px;
+	line-height: 1.55;
+}
+.party-meta__row dt {
+	margin: 0;
+	color: var(--muted);
+	font-weight: 500;
+}
+.party-meta__row dd {
+	margin: 0;
+	color: var(--ink);
+}
+.doc-foot .party-card--b .party-card__name {
+	margin-bottom: 0;
+	font-size: 17px;
+	font-weight: 600;
+}
+.party-signature {
+	margin-top: 18px;
+	padding-top: 14px;
+	border-top: 1px dashed var(--border);
+	font-size: 13px;
+	color: var(--muted);
+}
+.party-signature__line {
+	margin-top: 28px;
+	border-bottom: 1px solid var(--ink);
+	height: 1px;
+}
+.doc-foot-date {
+	margin-top: 24px;
+	padding: 18px 20px;
+	text-align: center;
+	background: rgba(39, 104, 168, 0.06);
+	border: 1px solid rgba(39, 104, 168, 0.12);
+	border-radius: 12px;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--ink);
+	letter-spacing: 0.06em;
+}
+.doc-foot-date__decor {
+	display: block;
+	font-size: 11px;
+	color: var(--muted);
+	letter-spacing: 0.2em;
+	margin-bottom: 8px;
+	font-weight: 600;
+}
+@media (max-width: 768px) {
+	.wrap { margin: 48px auto; padding: 0 16px; }
+	.doc { padding: 24px 20px; border-radius: 12px; }
+	h1 { font-size: 22px; }
+	h2 { font-size: 17px; }
+	.feature-cards { grid-template-columns: 1fr; }
+	.vesting-grid { grid-template-columns: 1fr; }
+	.party-footer-grid { grid-template-columns: 1fr; }
+	.party-meta__row { grid-template-columns: 4rem 1fr; }
+}
+@media print {
+	html, body { background: #fff !important; }
+	.wrap { margin: 0; padding: 0; }
+	.doc { box-shadow: none !important; border: 0; border-radius: 0; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="doc">
+      <h1>長期合夥協作協議書 <span class="pill">Dogtor 逗課</span></h1>
+
+      <div class="parties">
+        <p class="role">立協議書人</p>
+        <p><strong>甲方：</strong>超棒軟體科技有限公司（SuperB Software Technology Co., Ltd.）<span class="tag">以下簡稱甲方</span></p>
+        <p><strong>乙方：</strong>李宜嘉<span class="tag">以下簡稱乙方</span></p>
+      </div>
+
+      <h2>前言</h2>
+      <blockquote>
+        <p>甲乙雙方基於共同將 <strong>Dogtor 逗課</strong> 產品做好、做強之信念，同意建立長期合夥關係。雙方期望透過本次合作，使乙方以股權方式入股甲方，與甲方並肩投入產品開發、行銷推廣及營運成長，共同將 Dogtor 推向市場、擴大使用者觸及，使產品獲得廣大迴響，並為公司創造更多收益，達成雙方互利共榮之目標。</p>
+      </blockquote>
+      <p>緣甲乙雙方前於 <strong>2026 年 4 月 5 日</strong> 簽訂「專案合夥協作協議書」，約定為期兩個月之合夥觀察期（2026 年 4 月 5 日至 2026 年 6 月 4 日）。觀察期間雙方合作順利並達成共識，茲依前約之約定，雙方同意正式建立長期合夥關係。為確立雙方於長期合作期間之權利義務，雙方於 <strong>2026 年 6 月 5 日</strong>（以下稱「<strong>生效日</strong>」）訂立如下條款：</p>
+
+      <hr>
+
+      <h2>一、合作內容</h2>
+      <p>乙方以正式合夥人身分參與甲方營運，負責主導並執行以下業務，以將 Dogtor 做好、推廣上市並創造收益為共同目標：</p>
+
+      <div class="feature-cards">
+        <div class="feature-card">
+          <h3>行政事務管理</h3>
+          <p>負責公司日常行政事務之統籌與執行，包括但不限於文件管理、會議安排、政府補助申請書撰寫、企劃書製作及相關行政流程之處理。</p>
+        </div>
+        <div class="feature-card">
+          <h3>行銷公司對接</h3>
+          <p>擔任甲方與外部行銷公司之主要聯繫窗口，負責行銷策略之溝通協調、專案進度追蹤、成效評估報告彙整及相關事宜之對接與回報。</p>
+        </div>
+        <div class="feature-card">
+          <h3>產品決策與同步會議</h3>
+          <p>持續參與 Dogtor App 優化討論、商業模式開發及公司經營方向之決議；並每週參與一次核心成員同步會議（原則上以實體進行，視情況調整為線上）。</p>
+        </div>
+        <div class="feature-card">
+          <h3>產品美術設計</h3>
+          <p>負責產品相關之美術產出，包括但不限於行銷所需之美術圖像，以及 Dogtor App 內前端介面所需之美術素材之規劃與製作。</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>二、合作期間與工作義務</h2>
+      <p>本長期合作協議自 <strong>2026 年 6 月 5 日</strong> 起生效，除依本協議第七條規定解除外，持續有效。</p>
+      <div class="highlight-box">
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 8px;"><strong>工作型態</strong> <span class="pill">責任制</span></p>
+        <p>乙方之工作採<strong>責任制</strong>，由乙方彈性安排每日工作時間；惟雙方合意，乙方每週應投入約 <strong>兩至三日</strong> 之工作量，以完成本協議第一條所列合作事項及會議交辦事項。</p>
+      </div>
+      <p><strong>會議出席：</strong>乙方應依第一條之約定，準時參與每週核心成員同步會議；因故無法出席者，應於會議前至少一日通知甲方，並於會後閱覽會議紀錄、補足相關討論內容。</p>
+      <p><strong>交辦事項之完成：</strong>乙方應於每次同步會議中，就甲方或核心成員交辦之事項進行確認與承接，並依雙方於會議中約定之期限完成。無特別約定完成期限者，原則應於<strong>下次同步會議前</strong>完成；若事項複雜或需跨週執行，應於會議中明確說明預計完成時程，並於各次會議回報進度。</p>
+      <p><strong>進度回報：</strong>乙方應於每次同步會議中，就前次會議交辦事項之執行進度、完成情形及遭遇之困難主動回報，以確保雙方對專案進度之掌握一致。</p>
+
+      <hr>
+
+      <h2>三、社會保險與勞工保障</h2>
+      <p>乙方以正式合夥人身分參與甲方營運，甲方依法為乙方辦理下列社會保險及勞工保障，所需費用均由 <strong>甲方負擔</strong>。雙方合意每月提繳金額如下：</p>
+      <div class="vesting-grid">
+        <div class="vesting-item">
+          <dl>
+            <dt>全民健康保險</dt>
+            <dd>每月 NT$ 1,886</dd>
+          </dl>
+        </div>
+        <div class="vesting-item">
+          <dl>
+            <dt>勞工職業災害保險</dt>
+            <dd>每月 NT$ 243</dd>
+          </dl>
+        </div>
+        <div class="vesting-item">
+          <dl>
+            <dt>勞工退休金</dt>
+            <dd>每月 NT$ 1,770</dd>
+          </dl>
+        </div>
+        <div class="vesting-item">
+          <dl>
+            <dt>就業保險</dt>
+            <dd>每月 NT$ 59</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <p><strong>每月合計：</strong>前述四項費用合計 <strong style="color: var(--brand);">新台幣 3,958 元整</strong>，均由甲方負擔。</p>
+      </div>
+      <p>前述保險及退休金之投保級距、提繳方式及相關事宜，依中華民國法令及甲方依法訂定之規範辦理；若法令調整致應繳金額變動，雙方應配合依法調整，仍由甲方負擔。</p>
+
+      <hr>
+
+      <h2>四、股權分配與歸屬</h2>
+      <div class="highlight-box">
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 8px;"><strong>股權授予</strong> <span class="pill">長期合夥</span></p>
+        <p>甲方同意授予乙方超棒軟體科技有限公司 <strong style="font-size: 18px; color: var(--brand);">4%</strong> 之股權，作為長期合夥之對價。</p>
+        <div class="vesting-grid">
+          <div class="vesting-item">
+            <dl>
+              <dt>歸屬期間</dt>
+              <dd>12 個月（按月等比例）</dd>
+            </dl>
+          </div>
+          <div class="vesting-item">
+            <dl>
+              <dt>每月歸屬</dt>
+              <dd>4% ÷ 12 ≈ 0.3333%</dd>
+            </dl>
+          </div>
+          <div class="vesting-item">
+            <dl>
+              <dt>實際股權</dt>
+              <dd>期滿再變更登記</dd>
+            </dl>
+          </div>
+          <div class="vesting-item">
+            <dl>
+              <dt>登記前權利</dt>
+              <dd>依已歸屬比例享有分紅</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <p><strong>分期歸屬（Vesting）：</strong>前述股權自生效日起，以一年（12 個月）為歸屬期間，按月等比例歸屬。即每滿一個月歸屬 4% ÷ 12 ≈ 0.3333% 之股權，一年期滿後完整歸屬 4%。</p>
+      <p><strong>歸屬條件：</strong>股權之歸屬以乙方持續履行本協議之合作義務為前提。若乙方於歸屬期間內依第七條解除合作關係，僅就已歸屬之股權享有權利，未歸屬部分自動失效。</p>
+      <p><strong>實際股權登記：</strong>本協議所約定之股權，於歸屬期間內先以合約方式確認乙方之權益比例；待乙方工作滿約定之歸屬期間（一年）後，雙方應一次性至經濟部商業發展署（或主管之商業登記機關）辦理股權變更登記，將已完整歸屬之 <strong>4%</strong> 股權正式轉讓予乙方。在尚未完成變更登記前，乙方不具名義上之股東身分，但依本協議已歸屬之股權比例，享有對應之分紅（盈餘分配）權利。</p>
+      <p><strong>股東權利：</strong>股權變更登記完成後，乙方始取得名義上之股東身分，並享有相應之股東權利，包括但不限於年度利潤分配權及重大事項表決參與權，具體細節依公司章程及股東協議辦理。登記完成前，除分紅權外，表決權及其他股東權利之行使方式，由雙方依合夥精神協商辦理。</p>
+
+      <hr>
+
+      <h2>五、保密義務與智慧財產權</h2>
+      <p><strong>保密義務：</strong>乙方對於因本合作知悉之甲方營運資訊、產品架構、技術秘密、客戶資料及商業策略等，負有永久保密義務，非經甲方書面同意不得向第三方揭露。</p>
+      <p><strong>智財歸屬：</strong>乙方於合作期間為本專案所產出之各項企劃、素材、研究報告及相關產出，其智慧財產權均歸甲方所有。</p>
+
+      <hr>
+
+      <h2>六、競業禁止</h2>
+      <p>乙方於合作期間內，未經甲方書面同意，不得從事與 Dogtor 產品服務直接競爭之業務。</p>
+
+      <hr>
+
+      <h2>七、合作關係之解除</h2>
+      <p>任一方擬解除本協議，應於 <strong>三十日前</strong> 以書面通知他方。</p>
+      <p>解除後，乙方僅就已歸屬之股權保有權利，未歸屬部分自動失效；未完成股權變更登記者，其已歸屬股權仍依本協議享有分紅權，惟不得要求辦理超出已歸屬比例之登記。</p>
+      <p>保密義務及競業禁止條款於合作關係解除後仍持續有效。</p>
+
+      <hr>
+
+      <h2>八、法律適用與管轄</h2>
+      <p>本協議受中華民國法律管轄。若因本協議產生爭議，雙方應本於合夥精神誠信協商；若協商不成，同意以臺灣臺北地方法院為第一審管轄法院。</p>
+
+      <footer class="doc-foot">
+        <p class="doc-foot__title">協議書簽署</p>
+        <div class="party-footer-grid">
+          <section class="party-card party-card--a" aria-label="甲方">
+            <span class="party-card__badge">甲方</span>
+            <p class="party-card__name">超棒軟體科技有限公司</p>
+            <dl class="party-meta">
+              <div class="party-meta__row">
+                <dt>統一編號</dt>
+                <dd>62214225</dd>
+              </div>
+              <div class="party-meta__row">
+                <dt>代表人</dt>
+                <dd>丁崇耘</dd>
+              </div>
+              <div class="party-meta__row">
+                <dt>地址</dt>
+                <dd>臺北市中正區金山北路1號5樓之6</dd>
+              </div>
+            </dl>
+            <div class="party-signature">
+              簽章：
+              <div class="party-signature__line" aria-hidden="true"></div>
+            </div>
+          </section>
+          <section class="party-card party-card--b" aria-label="乙方">
+            <span class="party-card__badge">乙方</span>
+            <p class="party-card__name">李宜嘉</p>
+            <div class="party-signature">
+              簽章：
+              <div class="party-signature__line" aria-hidden="true"></div>
+            </div>
+          </section>
+        </div>
+        <div class="doc-foot-date">
+          <span class="doc-foot-date__decor">訂立日期</span>
+          中華民國 115 年 6 月 8 日
+        </div>
+      </footer>
+    </article>
+  </div>
+</body>
+</html>
